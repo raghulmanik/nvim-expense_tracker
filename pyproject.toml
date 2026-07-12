@@ -1,0 +1,8 @@
+[project]
+name = "nvim-expense-tracker"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "tabulate>=0.10.0",
+]
