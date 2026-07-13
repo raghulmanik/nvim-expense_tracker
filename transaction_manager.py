@@ -6,6 +6,7 @@ class TransactionManager:
 
     def __init__(self, selected_date):
 
+        self.id = 0
         self.date = selected_date
         self.report = fm_load_transaction()
         self.transactions = self.report.get(selected_date, [])
@@ -20,11 +21,25 @@ class TransactionManager:
         fm_save_transaction(self.report)
 
     def get_transactions(self):
+
+        for id, transactions in enumerate(self.transactions):
+            transactions["id"] = id
+
         return self.transactions
 
     def pop_transaction(self):
 
         if not self.transactions:
+            return None
+
+        removed_transaction = self.transactions.pop()
+        self._save_transaction()
+
+        return removed_transaction
+
+    def remove_transaction(self, index):
+        """remove transaction by index"""
+        if index < 0 or index > len(self.transactions):
             return None
 
         removed_transaction = self.transactions.pop()

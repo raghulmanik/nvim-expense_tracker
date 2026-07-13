@@ -1,3 +1,5 @@
+from re import subn
+
 from get_function import get_date, get_transaction_summary_and_totals
 from ui.menu import (
     print_available_commands,
@@ -32,6 +34,18 @@ def add_transaction():
         # v - to view transactions
         if choice == "v":
             print_transaction_list(manager.get_transactions())
+            continue
+
+        if choice == "r":
+            index = input("Enter Index to pop: ")
+
+            removed_transaction = manager.remove_transaction(int(index))
+
+            if removed_transaction is None:
+                print("Index is not available")
+            else:
+                print(f"{removed_transaction["subcategory"]} is removed")
+
             continue
 
         if choice == "s":

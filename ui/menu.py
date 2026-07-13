@@ -76,13 +76,14 @@ def print_available_commands():
 
 def print_transaction_list(transactions):
     if not transactions:
-        print("No transaction Available")
+        print("No Transaction Available")
         return None
 
     print_heading("Transaction List")
 
     table_data = [
         {
+            "Id": transaction["id"],
             "Type": transaction["transaction_type"],
             "Category": transaction["category"],
             "Item": transaction["subcategory"],
@@ -109,6 +110,10 @@ def print_transaction_list(transactions):
 
 
 def print_category_summary(summary, totals):
+
+    if not summary:
+        print("No Transaction Available")
+        return None
 
     print_heading("Category Summary")
     print()
